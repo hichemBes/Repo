@@ -1,0 +1,40 @@
+<notifier-container></notifier-container>
+<div class="dialog-content">
+  <div class="close-button-container">
+    <div class="question-form">
+      <h2>Ajouter Question</h2>
+      <!-- <h4>
+        {{this.questionForm.value|json}}
+      </h4> -->
+      <form [formGroup]="questionForm" (ngSubmit)="addQuestion()">
+        <label for="question">Question:</label>
+        <textarea formControlName="question" id="question" rows="3"></textarea>
+        <label>Choix:</label>
+        <div *ngIf="questionForm.get('choices')?.hasError('duplicateChoices')" class="error-message">
+          Choix unique
+        </div>
+        <ul formArrayName="choices">
+          <li *ngFor="let choice of choices.controls; let i = index">
+            <div class="choice-container">
+              <input type="text" [formControlName]="i" placeholder="Enter choice {{ i + 1 }}">
+              <button type="button" class="remove-choice" (click)="removeChoice(i)" *ngIf="choices.length > 2">Remove</button>
+            </div>
+          </li>
+        </ul>
+        <button type="button" class="add-choice" (click)="addChoice()">Ajouter choix</button>
+        <label for="correctAnswer">La Bonne Reponse est :</label>
+        <select formControlName="response" id="correctAnswer">
+          <option *ngFor="let choice of choices.controls; let i = index" [value]="choice.value">{{ choice.value }}</option>
+        </select>
+        <label for="correctAnswer">La Section  est :</label>
+        <select formControlName="idSection" id="correctAnswer">
+          <option *ngFor="let choice of SectionListe; let i = index" [value]="choice.idSection">{{ choice.libelleSection }}</option>
+        </select>
+        <label for="point">Point</label>
+        <input type="text" id="point" formControlName="points" />
+        <button type="submit" class="submit-button">Ajouter Question</button>
+        <button type="button" id="cancel" class="btn btn-secondary" (click)="closeDialog()"> Annuler </button>
+      </form>
+    </div>
+  </div>
+</div>

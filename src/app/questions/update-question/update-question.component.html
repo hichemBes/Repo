@@ -1,0 +1,33 @@
+<div class="dialog-content">
+    <div class="close-button-container">
+      <div class="question-form">
+        <h2>Modifier Question</h2>
+        <form [formGroup]="questionForm" (ngSubmit)="updateQuestion()">
+   
+           
+          <label for="question">Question:</label>
+          <textarea formControlName="question" id="question" rows="3"></textarea>
+          <label>Choix:</label>
+          <ul formArrayName="choices">
+            <li *ngFor="let choice of choices.controls; let i = index">
+              <div class="choice-container">
+                <input type="text" [formControlName]="i" placeholder="Enter choice {{ i + 1 }}">
+                <button type="button" class="remove-choice" (click)="removeChoice(i)" *ngIf="choices.length > 2">Remove</button>
+              </div>
+            </li>
+          </ul> 
+           <button type="button" class="add-choice" (click)="addChoice()">Ajouter choix</button>
+          <label for="correctAnswer">La Bonne Reponse est :</label>
+          <select formControlName="Response" id="correctAnswer">
+            <option *ngFor="let choice of choices.controls; let i = index" [value]="choice.value">Choix{{ i + 1 }}</option>
+          </select>
+          <label for="point">Point</label>
+          <input type="text" id="point" formControlName="points" /> 
+          <button type="submit" class="submit-button">Modifier Question</button>
+  
+          <button type="button" id="cancel" class="btn btn-secondary" (click)="closeDialog()"> Annuler </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

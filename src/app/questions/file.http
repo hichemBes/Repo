@@ -1,0 +1,13 @@
+Get http://localhost:8080/getQuestions
+
+post http://localhost:8080/SaveQuestion 
+content-type: application/json
+
+{
+    "question": "Question Sample 1+1",
+
+    "response": "1",
+    "choix":"2,5,3",
+    "active":tr
+
+}

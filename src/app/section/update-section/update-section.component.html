@@ -1,0 +1,32 @@
+
+<!-- update-section.component.html -->
+<div class="dialog-content">
+    <div class="close-button-container">
+      <div class="question-form">
+<div mat-dialog-content>    
+    <h2>Update Section</h2>
+    <form>
+        <label for="Section"></label>
+      <mat-form-field>  
+        <input matInput placeholder="Section ID" class="form-group" style="border-radius:2px ;" [(ngModel)]="data.idSection" name="idSection">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Section Code" class="form-group"  formControlName="sectioncode" [(ngModel)]="data.codeSection" name="codeSection">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Section Label" [(ngModel)]="data.libelleSection" name="libelleSection">
+      </mat-form-field>
+    </form>
+  </div>
+  
+  <div mat-dialog-actions>
+    <button mat-button (click)="onCancelClick()" class="btn btn-secondary" style="margin:  5px;">Cancel</button>
+    <button mat-button (click)="Update()" type="submit" class="submit-button"
+     cdkFocusInitial>Update</button>
+  </div>
+  
+      </div>
+    </div>
+</div>

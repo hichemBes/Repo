@@ -1,0 +1,59 @@
+<div class="form-container">
+    <div class="card col-lg-3 col-md-6">
+        <h4 class="card-header">Créer Un Compte</h4>
+        <div class="col-md-11">
+
+            <div class="card-body">
+                <div class="mb-3">  
+                    
+       
+            <form [formGroup]="form" (ngSubmit)="Register()">
+                <div class="form-group">
+                    <label for="firstName">Prénom</label>
+                    <br>
+                    <input formControlName="FirstName" type="text" class="form-control"
+                    [style.border]="'0.5px solid #C0C0C0'"
+                    placeholder="Prénom ...">
+                    <div *ngIf="form.get('FirstName')?.invalid && (form.get('FirstName')?.dirty || form.get('FirstName')?.touched)">
+                        <div *ngIf="form.get('FirstName')?.errors?.['required']" [style.color]="'red'">Prénom Obligatoire</div>
+                        <div *ngIf="form.get('FirstName')?.errors?.['minlength']" [style.color]="'red'">Prénom doit être d'au moins 2 caractères</div>
+                    </div> 
+                </div>
+                <br/>
+
+                <div class="form-group">
+                    <label for="lastName">Nom</label>
+                    <input formControlName="lastName" type="text" 
+                    class="form-control" [style.border]="'0.5px solid #C0C0C0'" placeholder="Nom ...">
+                    <div *ngIf="form.get('lastName')?.invalid && (form.get('lastName')?.dirty || form.get('lastName')?.touched)">
+                        <div *ngIf="form.get('lastName')?.errors?.['required']" [style.color]="'red'">Nom Obligatoire</div>
+                        <div *ngIf="form.get('lastName')?.errors?.['minlength']" [style.color]="'red'">Nom doit être d'au moins 2 caractères</div>
+                    </div>
+                </div>
+                <br/>
+
+                <div class="form-group">
+                    <label for="lastName">Email</label>
+                    <input formControlName="Email" type="text" 
+                    class="form-control" [style.border]="'0.5px solid #C0C0C0'" placeholder="Email ...">
+                    
+                </div>
+                <br/>
+
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input formControlName="Password"
+                    type="password" class="form-control" [style.border]="'0.5px solid #C0C0C0'" placeholder="Mot de passe...">
+                    <div *ngIf="form.get('Password')?.invalid && (form.get('Password')?.dirty || form.get('Password')?.touched)">
+                        <div *ngIf="form.get('Password')?.errors?.['required']" [style.color]="'red'">Password is required.</div>
+                    </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary">Créer Compte</button>
+                <a routerLink="/Login"  style="margin-left: 1rem;" class="btn btn-secondary">Login</a>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+</div>

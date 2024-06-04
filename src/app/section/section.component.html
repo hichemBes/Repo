@@ -1,0 +1,53 @@
+<div>
+    <div style="margin: 25px 50px 50px 50px">
+        <div style="margin-bottom: 10px;">
+            <button  class="btn btn-primary" (click)="openSection()"  >Ajouter Section</button>
+          </div>
+          
+        
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <!-- ID Column -->
+            <ng-container matColumnDef="sectionId">
+              <th mat-header-cell *matHeaderCellDef> Section ID </th>
+              <td mat-cell *matCellDef="let section"> {{section.sectionId}} </td>
+            </ng-container>
+          
+            <!-- Other Columns -->
+            <ng-container matColumnDef="idSection">
+              <th mat-header-cell *matHeaderCellDef> ID </th>
+              <td mat-cell *matCellDef="let section"> {{section.idSection}} </td>
+            </ng-container>
+          
+            <!-- Code Column -->
+            <ng-container matColumnDef="codeSection">
+              <th mat-header-cell *matHeaderCellDef> Code </th>
+              <td mat-cell *matCellDef="let section"> {{section.codeSection}} </td>
+            </ng-container>
+          
+            <!-- Label Column -->
+            <ng-container matColumnDef="libelleSection">
+              <th mat-header-cell *matHeaderCellDef> Label </th>
+              <td mat-cell *matCellDef="let section"> {{section.libelleSection}} </td>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef> Actions </th>
+              <td mat-cell *matCellDef="let question">
+                <button mat-icon-button (click)="editSection(question)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button (click)="deleteSection(question)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+            <!-- Define columns -->
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]" showFirstLastButtons></mat-paginator>
+          
+    </div>
+</div>

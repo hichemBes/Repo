@@ -1,0 +1,133 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-top: 10px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+  }
+  
+  button {
+    margin-top: 10px;
+    padding: 10px 20px;
+  }
+  
+  .cv-preview {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+  
+  .cv-preview h3 {
+    margin-top: 0;
+  }
+  
+  .cv-preview ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .cv-preview ul li {
+    margin-bottom: 10px;
+  }
+  
+
+  input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  
+  input:focus {
+    border-color: #80bdff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(128, 189, 255, 0.5);
+  }
+
+  .form-preview-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  form {
+    flex: 1;
+    margin-right: 20px;
+  }  
+
+  .preview-section ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .preview-section ul li {
+    margin-bottom: 10px;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .form-preview-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  form {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .cv-preview {
+    flex: 2; /* Increase the flex value to make this section wider */
+    padding: 20px;
+    border: 1px solid #ccc;
+    overflow: auto;
+    height: 100%;
+  }
+  
+  h1, h2, h3, h4 {
+    margin-top: 0;
+  }
+  
+  label {
+    display: block;
+    margin-top: 10px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+  }
+  
+  button {
+    margin-top: 10px;
+    padding: 10px 20px;
+  }
+  
+  .preview-section ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .preview-section ul li {
+    margin-bottom: 10px;
+  }
+.profile-image {
+    max-width: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }

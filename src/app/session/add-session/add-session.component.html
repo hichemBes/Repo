@@ -1,0 +1,115 @@
+
+
+<!-- 
+<notifier-container></notifier-container> -->
+<div class="dialog-content">
+  <div class="close-button-container">
+    <div class="question-form">
+      <h2>Ajouter Session</h2>
+   
+
+
+      <form  [formGroup]="SessionForm"  (ngSubmit)="addSession()">
+
+        <label for="libelle_session">libelle Session</label>
+        
+        <input type="text" style=" padding: 0.5rem;
+        font-size: 1rem;
+        border-radius: 0.25rem;
+        border: 1px solid #ced4da;
+        width: 100%;
+        box-sizing: border-box;" formControlName = "libelle_session">
+        <label for="StartDate">
+            Date de début Session
+        </label><input type="datetime-local" formControlName="StartDate" >
+
+        <div>
+          <label for="EndDate">Date de fin Session:</label>
+          <input type="datetime-local" id="EndDate" formControlName="EndDate">
+        </div>
+      
+     
+        <!-- <button type="button" class="add-choice" (click)="addChoice()">Ajouter choix</button> -->
+ 
+        <!-- <select formControlName="response" id="correctAnswer">
+          <option *ngFor="let choice of choices.controls; let i = index" [value]="choice.value"></option>
+        </select> -->
+             
+
+        <div>
+   
+          <div formGroupName="criteria">
+            <label for="educationLevel">Niveau d'étude:</label>
+            <select id="educationLevel" formControlName="educationLevel">
+              <option value="" disabled selected>Choisir le niveau d'étude</option>
+              <option value="bac">Bac</option>
+              <option value="bac+2">Bac +2</option>
+              <option value="bac+3">Bac +3</option>
+              <option value="bac+5">Bac +5</option>
+              <option value="doctorat">Doctorat</option>
+            </select>
+          </div>
+        </div>
+        
+        <div>
+          <label for="Label_sectionId">Section:</label>
+          <select id="sectionId" formControlName="SectionId" (change)="onSectionChange($event)">
+            <option value="" disabled selected>Choisir une section</option>
+            <option *ngFor="let section of ListeSection" [value]="section.idSection">{{ section.libelleSection }}</option>
+          </select>
+        </div>
+        <!-- <div>
+           <label for="ListeQuestions">Questions:</label>
+          <div formArrayName="selectedQuestions">
+            <select multiple formControlName="selectedQuestions">
+              <option *ngFor="let question of ListQuestion; let i = index" [ngValue]="i">{{ question.question }}</option>
+            </select>
+          </div>
+        </div> -->
+        <div *ngIf="SessionForm.controls['SectionId'] && SessionForm.controls['SectionId'].value != ''" style="width:100%">
+        <label for="QuestionArray">Questions</label>
+          <ng-multiselect-dropdown
+          [settings]="dropdownSettings"
+          [data]="ListQuestion"
+          (onSelect)="onItemSelect($event)"
+          (onSelectAll)="onSelectAll($event)"
+          (onDeSelect)="onItemDeSelect($event)"
+          (onDeSelectAll)="onDeSelectAll()"
+          [placeholder]="SessionForm.controls['selectedQuestions'].value.length === 1 ? placeholderSingleSelection : placeholderMultipleSelection">
+          </ng-multiselect-dropdown>
+      </div>
+      <label for="NbreCandidat">Nombre de poste</label>
+      <input type="number"  style=" padding: 0.5rem;
+      font-size: 1rem;
+      border-radius: 0.25rem;
+      border: 1px solid #ced4da;
+      width: 100%;
+      box-sizing: border-box;" formControlName="nombre_condiats">
+      <label for="ScoreQuestion">Score Questions</label>
+      <input type="number" style=" padding: 0.5rem;
+      font-size: 1rem;
+      border-radius: 0.25rem;
+      border: 1px solid #ced4da;
+      width: 100%;
+      box-sizing: border-box;" disabled>
+
+      <div>
+        <label for="EndDate">Score Réussite:</label>
+        <input type="number" style=" padding: 0.5rem;
+        font-size: 1rem;
+        border-radius: 0.25rem;
+        border: 1px solid #ced4da;
+        width: 100%;
+        box-sizing: border-box;">
+      </div>
+
+        
+        <button type="button" id="annuler" class="btn btn-secondary" (click)="closeDialog()"> Annuler </button>
+        <button type="button" id="ajouter" 
+         style="margin: 5px ;"
+        class="btn btn-primary" (click)="addSession()"> Ajouter Session </button>
+      </form>
+    </div>
+  </div>
+</div>
+

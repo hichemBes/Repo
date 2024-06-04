@@ -1,0 +1,76 @@
+.question-form {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .question-form h2 {
+    margin-bottom: 20px;
+  }
+  
+  .question-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .question-form textarea,
+  .question-form input[type="text"],
+  .question-form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .choice-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .choice-container input[type="text"] {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .remove-choice {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 10px;
+    cursor: pointer;
+  }
+  
+  .add-choice {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+  
+  .submit-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .remove-choice:hover,
+  .add-choice:hover,
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+  .close-button-container {
+    margin-left: auto; /* Pushes the close button to the right */
+  }
+

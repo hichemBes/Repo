@@ -1,0 +1,100 @@
+<div class="container">
+    <div class="form-preview-container">
+    <form [formGroup]="cvForm" (ngSubmit)="onSubmit()">
+      <h2>Informations personnelles</h2>
+      <div formGroupName="personalInfo">
+        <label>Nom:</label>
+        <input formControlName="LastName" >
+        <label>Prénom:</label>
+        <input formControlName="name" >
+        <label>Email:</label>
+        <input formControlName="email">
+        <label>Télephone:</label>
+        <input formControlName="phone">
+        <label>Addresse:</label>
+        <input formControlName="address">
+        <label> Image Ciriculm :</label>
+        <input type="file" (change)="onImageChange($event)">
+      </div>
+  
+      <h2>Education</h2>
+      <div formArrayName="education">
+        <div *ngFor="let edu of education.controls; let i = index" [formGroupName]="i">
+            <label>Specialité</label>
+            <input formControlName="degree">
+            <label>Section</label>
+            <input formControlName="section">
+          <label>Diplôme:</label>
+          <input formControlName="degree">
+          <label> Etablissement :</label>
+          <input formControlName="institution">
+          <label>Année:</label>
+          <input formControlName="year">
+        </div>
+        <button type="button" class="btn btn-primary" (click)="addEducation()">Ajouter éducation</button>
+      </div>
+  
+      <h2>
+        Expériences professionnelles</h2>
+      <div formArrayName="experience">
+        <div *ngFor="let exp of experience.controls; let i = index" [formGroupName]="i">
+          <label> Titre de Poste:</label>
+          <input formControlName="jobTitle">
+          <label>Sociéte :</label>
+          <input formControlName="company">
+          <label>Dureé:</label>
+          <input formControlName="duration">
+          <label>Description:</label>
+          <input formControlName="description">
+        </div>
+        <button type="button" class="btn btn-primary" (click)="addExperience()">Ajouter Experience </button>
+      </div>
+  
+      <h2>Compétences</h2>
+      <div formArrayName="skills">
+        <div *ngFor="let skill of skills.controls; let i = index" [formGroupName]="i">
+          <label>Skill:</label>
+          <input formControlName="skill">
+        </div>
+        <button type="button" class="btn btn-primary"  (click)="addSkill()">Ajouter Compétence</button>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Ajouter Cv</button>
+    </form>
+  
+  
+    <div class="cv-preview">
+   
+      <img *ngIf="profileImage" [src]="profileImage" alt="Profile Image" class="profile-image">
+      <p>Nom: {{ cvForm.value.personalInfo.LastName }}</p>
+      <p>Prénom: {{ cvForm.value.personalInfo.name }}</p>
+      <p>Email: {{ cvForm.value.personalInfo.email }}</p>
+      <p>téléphone: {{ cvForm.value.personalInfo.phone }}</p>
+      <p>Addresse: {{ cvForm.value.personalInfo.address }}</p>
+  
+      <h4>Education</h4>
+      <ul>
+        <li *ngFor="let edu of cvForm.value.education">
+          {{ edu.degree }} depuis {{ edu.institution }} ({{ edu.year }})
+        </li>
+      </ul>
+  
+      <h4>
+        Expériences professionnelles</h4>
+      <ul>
+        <li *ngFor="let exp of cvForm.value.experience">
+          {{ exp.jobTitle }} at {{ exp.company }} for {{ exp.duration }}
+          <p>{{ exp.description }}</p>
+        </li>
+      </ul>
+  
+      <h4>Compétences</h4>
+      <ul>
+        <li *ngFor="let skill of cvForm.value.skills">
+          {{ skill.skill }}
+        </li>
+      </ul>
+    </div>
+    </div>
+  </div>
+  

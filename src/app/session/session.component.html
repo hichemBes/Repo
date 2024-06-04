@@ -1,0 +1,74 @@
+<div>
+    
+<div style="margin: 25px 50px 50px 50px">
+    <div style="margin-bottom: 10px;">
+        <div style="margin-bottom: 10px;">
+            <button  class="btn btn-primary" (click)="openNumberModal()"  >Ajouter Session</button>
+          </div>
+    <div class="container">
+        <div class="row">
+          <div class="col-md-4" *ngFor="let item of SessionList">
+            <div class="card"   style="width: 18rem; height: 15rem;">
+              <div class="card-header px-3" style="background-color: #2874A6; color: white; ">{{ item.libelleSession }}</div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item" >{{ item.datefin }}</li>
+                <li class="list-group-item" >Nombre de place : {{ item.nbrCandidats }}</li>
+                <li class="list-group-item" >DateDébut Session :   {{ item.startDate }}</li>
+                <li class="list-group-item" >DateFin Session :   {{ item.endDate }}</li>
+              </ul>
+              <div class="card-body text-center">
+                <div style="  display: flex;
+                overflow-x: auto;
+                width: 50%;">
+
+                  <button style="
+                    width: 50%;
+                    position: absolute;
+                    bottom: 10px;
+                    right: 10px; 
+                    background-color: #154360 ;
+                    color:white;
+                    border-radius: 10px;
+                    width: 50%;
+                    font-weight: 300;
+                    letter-spacing: 0.2px;
+                    text-transform: uppercase;" class="btn btn-primary" (click)="seeMore(item)">Savoir plus</button>
+              </div>
+              
+              
+              <button style="
+                    position: absolute;
+                    bottom: 10px;
+                    left: 10px;
+                    background-color: #2874A6;
+                    color: white;
+                    border-radius: 10px;
+                    font-weight: 300;
+                    letter-spacing: 0.2px;
+                    text-transform: uppercase;
+                    width: 50%;" 
+                    class="btn btn-primary" 
+                    (click)="participer(item)">Participer Session</button>
+                    
+                    
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+      
+
+
+<style>
+      .card {
+  margin-bottom: 20px;
+}
+    .tile {
+  box-shadow: 5px 7px 7px 0px rgba(0,0,0,0.51);
+
+
+}
+</style>

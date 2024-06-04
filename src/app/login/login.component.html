@@ -1,0 +1,49 @@
+
+
+<div class="form-container">
+
+    <div class="card col-lg-3 col-md-6">
+        <h4 class="card-header">Login</h4>
+        <div class="col-md-11">
+    <div class="card-body">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="text" formControlName="username" class="form-control"  
+                placeholder="Email.... " [style.border]="'0.2px solid #C0C0C0'"  />
+                <div *ngIf="f['username']?.errors?.['required']" class="invalid-feedback">
+                    <!-- <div  *ngIf="f['username'].errors['required']">Username is required</div> -->
+                </div>
+            </div>
+            <div class="mb-3">  
+                <label class="form-label">Mot de Passe </label>
+                <input type="password" formControlName="password" class="form-control" 
+                placeholder="Mot de passe ..."
+                [style.border]="'0.2px solid #C0C0C0'"  />
+                <div *ngIf="submitted && f['password'].errors" class="invalid-feedback"> 
+                    <!-- <div *ngIf="f['password'].errors.required">Password is required</div>  -->
+                </div>
+            </div>
+            <div>
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+                    Login
+                </button>
+                <button type="button" (click)="redirect()" class="btn btn-primary" style="margin-left: 4rem;">
+                    Mot de passe oublié
+                </button>
+                <!-- <a routerLink="../register" class="btn btn-link">Register</a> -->
+                <a  routerLink="../register"  style="margin-left: 0.1rem; margin-top:0.8rem;" class="btn btn-secondary" >Créer Compte</a>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+<style>
+    .form-container {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}
+</style>
