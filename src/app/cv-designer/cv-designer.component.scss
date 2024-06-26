@@ -106,7 +106,16 @@
     display: block;
     margin-top: 10px;
   }
-  
+  #genre{
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+  }
+  #genre:focus {
+    border-color: #80bdff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(128, 189, 255, 0.5);
+  }
   input {
     width: 100%;
     padding: 8px;
@@ -130,4 +139,22 @@
     max-width: 150px;
     border-radius: 50%;
     margin-bottom: 20px;
+  }
+
+  .input,
+  select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    box-sizing: border-box;
+  }
+  
+  .input:focus,
+  select:focus {
+    border-color: #80bdff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(128, 189, 255, 0.5);
   }

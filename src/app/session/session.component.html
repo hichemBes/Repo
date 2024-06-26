@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
           <div class="col-md-4" *ngFor="let item of SessionList">
-            <div class="card"   style="width: 18rem; height: 15rem;">
+            <div class="card"   style="width: 20rem; height: 15rem;">
               <div class="card-header px-3" style="background-color: #2874A6; color: white; ">{{ item.libelleSession }}</div>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item" >{{ item.datefin }}</li>
@@ -34,19 +34,19 @@
                     letter-spacing: 0.2px;
                     text-transform: uppercase;" class="btn btn-primary" (click)="seeMore(item)">Savoir plus</button>
               </div>
-              
-              
-              <button style="
+<!--               
+              *ngIf="" based on the role  -->
+              <button  style="
+                           width: 50%;
                     position: absolute;
                     bottom: 10px;
-                    left: 10px;
-                    background-color: #2874A6;
-                    color: white;
+                    right: 10px; 
+                    background-color: #154360 ;
+                    color:white;
                     border-radius: 10px;
+                    width: 50%;
                     font-weight: 300;
-                    letter-spacing: 0.2px;
-                    text-transform: uppercase;
-                    width: 50%;" 
+                    letter-spacing: 0.2px"
                     class="btn btn-primary" 
                     (click)="participer(item)">Participer Session</button>
                     

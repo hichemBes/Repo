@@ -4,16 +4,25 @@
         <li class="sidebar-item" [class.active]="showMenu === sidebarnavItem.title" *ngFor="let sidebarnavItem of sidebarnavItems"
             [routerLinkActive]="sidebarnavItem.submenu.length != 0 ? '' : 'active'">
             <div *ngIf="Role">
-
                 <div class="nav-small-cap" *ngIf="sidebarnavItem.extralink === true">{{sidebarnavItem.title}}</div>
                 <a class="sidebar-link waves-effect waves-dark" [routerLink]="sidebarnavItem.class === '' ? [sidebarnavItem.path] : null"
-                [ngClass]="[sidebarnavItem.class]" *ngIf="!sidebarnavItem.extralink;" (click)="addExpandClass(sidebarnavItem.title)"
-                [routerLinkActive]="sidebarnavItem.submenu.length != 0 ? '' : 'active'">
-                <!-- <i [ngClass]="[sidebarnavItem.icon]"></i> -->
-                <span class="hide-menu">{{sidebarnavItem.title}}</span>
-            </a>
-        </div>
+                    [ngClass]="[sidebarnavItem.class]" *ngIf="!sidebarnavItem.extralink;" (click)="toggleCollapse(sidebarnavItem)"
+                    [routerLinkActive]="sidebarnavItem.submenu.length != 0 ? '' : 'active'">
+                    <!-- <i [ngClass]="[sidebarnavItem.icon]"></i> -->
+                    <span class="hide-menu">{{sidebarnavItem.title}}</span>
+                    <span *ngIf="sidebarnavItem.submenu.length" class="fa fa-caret-down"></span> <!-- Icon indicating submenu -->
+                    <span *ngIf="sidebarnavItem.submenu.length" class="collapse-indicator" [ngClass]="{'fa-plus': sidebarnavItem.collapsed, 'fa-minus': !sidebarnavItem.collapsed}">
+                    </span>
+                </a>
+                <!-- Submenu items -->
+                <ul *ngIf="sidebarnavItem.submenu.length && !sidebarnavItem.collapsed" class="submenu">
+                    <li *ngFor="let subItem of sidebarnavItem.submenu" class="sidebar-sub-item">
+                        <a [routerLink]="[subItem.path]" class="sidebar-link waves-effect waves-dark">
+                            <span class="hide-menu">{{subItem.title}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </li>
-    
     </ul>
 </nav>

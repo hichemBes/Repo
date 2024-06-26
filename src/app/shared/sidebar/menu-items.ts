@@ -40,6 +40,52 @@ export const ROUTES: RouteInfo[] = [
     class: '',
     extralink: false,
     submenu: []
-  },
- 
+  }
+  ,
+
+  {
+    path: '/Paramétrage',
+    title: 'Paramétrage',
+    // icon:'<mat-icon>help_outline</mat-icon>,
+  class: '',
+  extralink: false,
+  collapsed: true , // Initialize collapsed state
+  submenu: [
+    {
+
+    path: '/Langue',
+    title: 'Langue',
+    // icon: string;
+    class: '',
+    extralink: false,
+    submenu: []
+    }
+    ,
+
+    {
+      
+      
+      
+      path: '/etude',
+      title: 'Niveau d\'etude ',
+      // icon: string;
+      class: '',
+      extralink: false,
+      submenu: []
+      
+      }
+      
+  ]
+
+ },
+ {
+  path: '/dashboard',
+  title: 'Dashboard',
+  // icon:'<mat-icon>help_outline</mat-icon>,
+  class: '',
+    extralink: false,
+    submenu: []
+}
+
+
 ];

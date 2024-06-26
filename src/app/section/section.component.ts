@@ -67,6 +67,7 @@ constructor(  public dialog: MatDialog , private  SectionService  :SectionServic
   toggleDialog(){
     debugger
     this.showDialog = false;
+    this.ngOnInit();
   }
 
   deleteSection(section :Section){

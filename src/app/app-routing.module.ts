@@ -7,6 +7,8 @@ import { RegisterComponent } from './register/register.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ApplySeesionComponent } from './apply-seesion/apply-seesion.component';
+import { LangueComponent } from './langue/langue.component';
+import { EducationComponent } from './education/education.component';
 
 
 export const Approutes: Routes = [
@@ -48,7 +50,22 @@ export const Approutes: Routes = [
    ,{
     path:'cv',
     loadChildren:()=>import('./cv-designer/cv-designer.module').then(m=>m.Cvmodule)
- } 
+ } ,
+
+
+
+ {
+path:'Langue',
+component:LangueComponent
+ }
+ ,
+ {
+
+  
+    path:'etude',
+    component:EducationComponent
+  
+ }
 ,{
   path:'apply/:id',
   component:ApplySeesionComponent

@@ -1,100 +1,144 @@
 <div class="container">
-    <div class="form-preview-container">
+  <div class="form-preview-container">
     <form [formGroup]="cvForm" (ngSubmit)="onSubmit()">
       <h2>Informations personnelles</h2>
       <div formGroupName="personalInfo">
         <label>Nom:</label>
-        <input formControlName="LastName" >
+        <input formControlName="LastName">
         <label>Prénom:</label>
-        <input formControlName="name" >
+        <input formControlName="name">
         <label>Email:</label>
         <input formControlName="email">
-        <label>Télephone:</label>
+        <label>Téléphone:</label>
         <input formControlName="phone">
         <label>Addresse:</label>
         <input formControlName="address">
-        <label> Image Ciriculm :</label>
+
+        <!-- Multi-select for Genre -->
+        <label>Genre:</label>
+        <select formControlName="genre" >
+          <option value="MEN">Homme</option>
+          <option value="WOMEN">Femme</option>
+        </select>
+        
+        <!-- Multi-select for Etat Civile -->
+        <label>État civil:</label>
+        <select formControlName="etatCivile">
+          <option value="CELIBATAIRE">Célibataire</option>
+          <option value="MARIE">Marié</option>
+        </select>
+        
+        <!-- Multi-select for Niveau -->
+        <label>Niveau:</label>
+        <select formControlName="niveau" >
+          <option value="BAC">BAC</option>
+          <option value="LICENCE">Licence</option>
+          <option value="MASTER">Master</option>
+          <option value="DOCTORAT">Doctorat</option>
+        </select>
+        
+        <label>Date de Naissance:</label>
+        <input formControlName="dateNaissance" type="date">
+        <label>Numéro CIN:</label>
+        <input formControlName="numCin">
+        <label>Numéro de Téléphone:</label>
+        <input formControlName="numTel">
+        <label>Années d'Expérience:</label>
+        <input formControlName="nbrAnnesExp">
+        <label>Score du Dossier:</label>
+        <input formControlName="scoreDossier">
+        <label>Image Ciriculm :</label>
         <input type="file" (change)="onImageChange($event)">
       </div>
-  
-      <h2>Education</h2>
-      <div formArrayName="education">
-        <div *ngFor="let edu of education.controls; let i = index" [formGroupName]="i">
-            <label>Specialité</label>
-            <input formControlName="degree">
-            <label>Section</label>
-            <input formControlName="section">
-          <label>Diplôme:</label>
-          <input formControlName="degree">
-          <label> Etablissement :</label>
-          <input formControlName="institution">
-          <label>Année:</label>
-          <input formControlName="year">
-        </div>
-        <button type="button" class="btn btn-primary" (click)="addEducation()">Ajouter éducation</button>
+
+      <h2>Adresse</h2>
+      <div formGroupName="address">
+        <label>Code Postal:</label>
+        <input formControlName="codePostal">
+        <label>Ville:</label>
+        <input formControlName="ville">
+        <label>Gouvernorat:</label>
+        <input formControlName="gouvernorat">
       </div>
-  
-      <h2>
-        Expériences professionnelles</h2>
-      <div formArrayName="experience">
-        <div *ngFor="let exp of experience.controls; let i = index" [formGroupName]="i">
-          <label> Titre de Poste:</label>
-          <input formControlName="jobTitle">
-          <label>Sociéte :</label>
-          <input formControlName="company">
-          <label>Dureé:</label>
-          <input formControlName="duration">
-          <label>Description:</label>
-          <input formControlName="description">
+
+      <h2>Loisirs</h2>
+      <div formArrayName="loisirs">
+        <div *ngFor="let loisir of loisirs.controls; let i = index" [formGroupName]="i">
+          <label>Loisir:</label>
+          <input formControlName="libelleLoisir">
         </div>
-        <button type="button" class="btn btn-primary" (click)="addExperience()">Ajouter Experience </button>
+        <button type="button" class="btn btn-primary" (click)="addLoisir()">Ajouter Loisir</button>
       </div>
-  
+
       <h2>Compétences</h2>
-      <div formArrayName="skills">
-        <div *ngFor="let skill of skills.controls; let i = index" [formGroupName]="i">
-          <label>Skill:</label>
-          <input formControlName="skill">
+      <div formArrayName="competences">
+        <div *ngFor="let competence of competences.controls; let i = index" [formGroupName]="i">
+          <label>Compétence:</label>
+          <input formControlName="libelleCompetence">
         </div>
-        <button type="button" class="btn btn-primary"  (click)="addSkill()">Ajouter Compétence</button>
+        <button type="button" class="btn btn-primary" (click)="addCompetence()">Ajouter Compétence</button>
       </div>
-  
+
+      <h2>Certificats Professionnels</h2>
+      <div formArrayName="certificatProfissionals">
+        <div *ngFor="let certificat of certificatProfissionals.controls; let i = index" [formGroupName]="i">
+          <label>Certificat:</label>
+          <input formControlName="libelleCertificatProfissional">
+        </div>
+        <button type="button" class="btn btn-primary" (click)="addCertificat()">Ajouter Certificat</button>
+      </div>
+
+      <h2>Diplômes</h2>
+      <div formArrayName="diplomes">
+        <div *ngFor="let diplome of diplomes.controls; let i = index" [formGroupName]="i">
+          <label>Diplôme:</label>
+          <input formControlName="libelleDiplome">
+          <label>Mention:</label>
+          <input formControlName="mention">
+          <label>Année:</label>
+          <input formControlName="anneDiplome">
+        </div>
+        <button type="button" class="btn btn-primary" (click)="addDiplome()">Ajouter Diplôme</button>
+      </div>
+
       <button type="submit" class="btn btn-primary">Ajouter Cv</button>
     </form>
-  
-  
+
     <div class="cv-preview">
-   
       <img *ngIf="profileImage" [src]="profileImage" alt="Profile Image" class="profile-image">
       <p>Nom: {{ cvForm.value.personalInfo.LastName }}</p>
       <p>Prénom: {{ cvForm.value.personalInfo.name }}</p>
       <p>Email: {{ cvForm.value.personalInfo.email }}</p>
-      <p>téléphone: {{ cvForm.value.personalInfo.phone }}</p>
-      <p>Addresse: {{ cvForm.value.personalInfo.address }}</p>
-  
-      <h4>Education</h4>
+      <p>Téléphone: {{ cvForm.value.personalInfo.phone }}</p>
+      <p>Adresse: {{ cvForm.value.personalInfo.address }}</p>
+
+      <h4>Loisirs</h4>
       <ul>
-        <li *ngFor="let edu of cvForm.value.education">
-          {{ edu.degree }} depuis {{ edu.institution }} ({{ edu.year }})
+        <li *ngFor="let loisir of cvForm.value.loisirs">
+          {{ loisir.libelleLoisir }}
         </li>
       </ul>
-  
-      <h4>
-        Expériences professionnelles</h4>
-      <ul>
-        <li *ngFor="let exp of cvForm.value.experience">
-          {{ exp.jobTitle }} at {{ exp.company }} for {{ exp.duration }}
-          <p>{{ exp.description }}</p>
-        </li>
-      </ul>
-  
+
       <h4>Compétences</h4>
       <ul>
-        <li *ngFor="let skill of cvForm.value.skills">
-          {{ skill.skill }}
+        <li *ngFor="let competence of cvForm.value.competences">
+          {{ competence.libelleCompetence }}
+        </li>
+      </ul>
+
+      <h4>Certificats Professionnels</h4>
+      <ul>
+        <li *ngFor="let certificat of cvForm.value.certificatProfissionals">
+          {{ certificat.libelleCertificatProfissional }}
+        </li>
+      </ul>
+
+      <h4>Diplômes</h4>
+      <ul>
+        <li *ngFor="let diplome of cvForm.value.diplomes">
+          {{ diplome.libelleDiplome }} ({{ diplome.anneDiplome }}), Mention: {{ diplome.mention }}
         </li>
       </ul>
     </div>
-    </div>
   </div>
-  
+</div>

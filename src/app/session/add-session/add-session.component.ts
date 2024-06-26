@@ -7,6 +7,7 @@ import { QuestionService } from 'src/app/service/question.service';
 import { SectionService } from 'src/app/service/section.service';
 import { SessionService } from 'src/app/services/session.service';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { format } from 'date-fns/format';
 
 @Component({
   selector: 'app-add-session',
@@ -136,8 +137,8 @@ onClear($event){
   addSession() {
 
     const sessionData = {
-      startDate: this.SessionForm.get('StartDate').value as Date,
-      endDate: this.SessionForm.get('EndDate').value as Date,
+      startDate: format( this.SessionForm.get('StartDate').value as Date,'dd-MM-yyyy'),
+      endDate: format(this.SessionForm.get('EndDate').value as Date,'dd-MM-yyyy'),
       SectionId: this.SessionForm.get('SectionId').value,
       criteria: this.SessionForm.get('criteria').value,
       selectedCandidates: this.SessionForm.get('selectedCandidates').value,

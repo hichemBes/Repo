@@ -3,6 +3,7 @@ import { SessionService } from '../services/session.service';
 import { Session } from '../Model/Session';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { AddSessionComponent } from './add-session/add-session.component';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-session',
@@ -12,7 +13,7 @@ import { AddSessionComponent } from './add-session/add-session.component';
 export class SessionComponent implements OnInit {
   SessionList !:any[]
   
-  constructor( public dialog: MatDialog ,  private sessionservice :SessionService) {
+  constructor(   public router :Router , public dialog: MatDialog ,  private sessionservice :SessionService) {
   }
   
   ngOnInit(): void {
@@ -33,8 +34,11 @@ export class SessionComponent implements OnInit {
   }
 
   participer(item){
-           
 
+     console.log(item); 
+    console.log(item.idSession); 
+    let id = item.idSession;
+    this.router.navigate([`/apply/${id}`]);
   }
 
 

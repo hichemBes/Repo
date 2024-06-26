@@ -42,6 +42,16 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CvDesignerComponent } from './cv-designer/cv-designer.component';
 import { ApplySeesionComponent } from './apply-seesion/apply-seesion.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { format } from 'date-fns';
+import * as Chart from 'chart.js';
+// import { ChartsModule } from 'ng2-charts';
+
+import { BaseChartDirective } from 'ng2-charts';
+import { SettingsComponent } from './settings/settings.component';
+import { LangueComponent } from './langue/langue.component';
+import { EducationComponent } from './education/education.component';
+import { UpdateLangueComponent } from './langue/update-langue/update-langue.component';
+import { AddLangueComponent } from './langue/add-langue/add-langue.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +65,12 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     ResetPasswordComponent,
     CvDesignerComponent,
     ApplySeesionComponent,
+    SettingsComponent,
+    LangueComponent,
+    EducationComponent,
+    UpdateLangueComponent,
+    AddLangueComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -74,11 +90,12 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     NotifierModule,
     MatPaginatorModule,
     MatIconModule,
-   NgMultiSelectDropDownModule.forRoot(),
+    NgMultiSelectDropDownModule.forRoot(),
     MatFormFieldModule,
     SlickCarouselModule,
-    SlickCarouselModule
-
+    SlickCarouselModule,
+    BaseChartDirective,
+    
 
     
   ],

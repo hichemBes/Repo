@@ -1,0 +1,51 @@
+<div class="container">
+    <div style="margin: 25px 5px 5px 5px">
+ 
+
+        <div class="charts-container">
+            <div class="chart">
+              <p class="chart-description"> Nombre de sessions lancées au fil du temps</p>
+              <canvas #chartCanvas width="400" height="400"></canvas>
+            </div>
+            <div class="chart">
+              <p class="chart-description"> Nombre de candidats par session</p>
+              <canvas #barChartCanvas width="400" height="400"></canvas>
+            </div>
+          </div>
+          <div class="charts-container">
+            <div class="chart">
+              <p class="chart-description">Nombre de candidats par niveau d’études</p>
+              <canvas #doughnutChartCanvas width="400" height="400"></canvas>
+            </div>
+            <div class="chart">
+              <p class="chart-description">Nombre de candidats par niveau d’études</p>
+              <canvas #pieChartCanvas width="400" height="400"></canvas>
+            </div>
+          </div>
+          
+          
+
+    <style>
+.charts-container {
+  display: flex;
+}
+
+.chart {
+  margin-right: 20px; /* Adjust the margin between the charts */
+}
+
+canvas {
+  width: 400px !important;
+  height: 400px !important;
+}
+.chart-container {
+  display: flex;
+}
+
+.chart-container canvas {
+  margin-right: 20px; /* Add some spacing between the charts */
+}
+
+</style>
+</div>
+</div>

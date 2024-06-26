@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DossierCondidatServiceService } from '../dossier-condidat-service.service';
 
 @Component({
   selector: 'app-cv-designer',
@@ -11,73 +12,132 @@ export class CvDesignerComponent {
   cvForm: FormGroup;
   profileImage: string | ArrayBuffer | null = null;
 
-  constructor(private fb: FormBuilder) {
+  genres = ['MEN', 'WOMEN'];
+  etatCiviles = ['CELIBATAIRE', 'MARIE'];
+  niveaux = ['BAC', 'LICENCE', 'MASTER', 'DOCTORAT'];
+
+  constructor(private fb: FormBuilder, private dossierCondidatService: DossierCondidatServiceService) {
     this.cvForm = this.fb.group({
       personalInfo: this.fb.group({
         name: ['', Validators.required],
         LastName: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         phone: ['', Validators.required],
-        section: ['', Validators.required],
-        address: ['']
+        genre: [[], Validators.required], // Allow multiple values
+        etatCivile: ['', Validators.required],
+        niveau: [[], Validators.required], // Allow multiple values
+        dateNaissance: ['', Validators.required],
+        numCin: ['', Validators.required],
+        numTel: ['', Validators.required],
+        nbrAnnesExp: ['', Validators.required],
+        scoreDossier: ['', Validators.required],
+        address: ['', Validators.required],
       }),
-      education: this.fb.array([]),
-      experience: this.fb.array([]),
-      skills: this.fb.array([])
+      address: this.fb.group({
+        codePostal: ['', Validators.required],
+        ville: ['', Validators.required],
+        gouvernorat: ['', Validators.required]
+      }),
+      loisirs: this.fb.array([]),
+      competences: this.fb.array([]),
+      certificatProfissionals: this.fb.array([]),
+      diplomes: this.fb.array([])
     });
   }
 
-  get education(): FormArray {
-    return this.cvForm.get('education') as FormArray;
+  get loisirs(): FormArray {
+    return this.cvForm.get('loisirs') as FormArray;
   }
 
-  get experience(): FormArray {
-    return this.cvForm.get('experience') as FormArray;
+  get competences(): FormArray {
+    return this.cvForm.get('competences') as FormArray;
   }
 
-  get skills(): FormArray {
-    return this.cvForm.get('skills') as FormArray;
+  get certificatProfissionals(): FormArray {
+    return this.cvForm.get('certificatProfissionals') as FormArray;
   }
 
-  addEducation() {
-    this.education.push(this.fb.group({
-      degree: ['', Validators.required],
-      institution: ['', Validators.required],
-      year: ['', Validators.required]
+  get diplomes(): FormArray {
+    return this.cvForm.get('diplomes') as FormArray;
+  }
+
+  addLoisir() {
+    this.loisirs.push(this.fb.group({
+      libelleLoisir: ['', Validators.required]
     }));
   }
 
-  addExperience() {
-    this.experience.push(this.fb.group({
-      jobTitle: ['', Validators.required],
-      company: ['', Validators.required],
-      duration: ['', Validators.required],
-      description: ['']
+  addCompetence() {
+    this.competences.push(this.fb.group({
+      libelleCompetence: ['', Validators.required]
     }));
   }
 
-  addSkill() {
-    this.skills.push(this.fb.group({
-      skill: ['', Validators.required]
+  addCertificat() {
+    this.certificatProfissionals.push(this.fb.group({
+      libelleCertificatProfissional: ['', Validators.required]
     }));
   }
+
+  addDiplome() {
+    this.diplomes.push(this.fb.group({
+      libelleDiplome: ['', Validators.required],
+      mention: ['', Validators.required],
+      anneDiplome: ['', Validators.required]
+    }));
+  }
+
+
 
   onSubmit() {
-    console.log(this.cvForm.value);
+
+      const formValue = this.cvForm.value;
+  
+      // Vérification des champs vides et ajout de valeurs par défaut si nécessaire
+      const dossierCondidat = {
+        dateNaissance: formValue.personalInfo.dateNaissance,
+        numCin: formValue.personalInfo.numCin,
+        numTel: formValue.personalInfo.numTel || 'N/A',
+        nbrAnnesExp: formValue.personalInfo.nbrAnnesExp || '0',
+        scoreDossier: formValue.personalInfo.scoreDossier || '0',
+        genre: formValue.personalInfo.genre.join(','),
+        etatCivile: formValue.personalInfo.etatCivile,
+        niveau: formValue.personalInfo.niveau.join(','),
+        active: true,
+        adress: {
+          codePostal: formValue.address.codePostal || 'N/A',
+          ville: formValue.address.ville || 'N/A',
+          gouvernorat: formValue.address.gouvernorat || 'N/A',
+        },
+        loisirs: formValue.loisirs.length ? formValue.loisirs : [{ libelleLoisir: 'N/A' }],
+        competences: formValue.competences.length ? formValue.competences : [{ libelleCompetence: 'N/A' }],
+        certificatProfissionals: formValue.certificatProfissionals.length ? formValue.certificatProfissionals : [{ libelleCertificatProfissional: 'N/A' }],
+        diplomes: formValue.diplomes.length ? formValue.diplomes : [{ libelleDiplome: 'N/A', mention: 'N/A', anneDiplome: 'N/A' }],
+      };
+  
+      const email = formValue.personalInfo.email;
+      const langueIds = [1];
+  
+      this.dossierCondidatService.saveDossierCondidat(dossierCondidat, email, langueIds).subscribe(
+        response => {
+          console.log('Dossier Condidat saved successfully', response);
+        },
+        error => {
+          console.error('Error saving Dossier Condidat', error);
+        }
+      );
+    
   }
+  
+
 
 
   onImageChange(event: any) {
     const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.profileImage = e.target?.result;
-        this.cvForm.get('personalInfo.profileImage')?.setValue(this.profileImage);
-      };
-      reader.readAsDataURL(file);
-    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.profileImage = reader.result;
+    };
+    reader.readAsDataURL(file);
   }
-
-
 }

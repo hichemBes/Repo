@@ -48,4 +48,10 @@ export class SidebarComponent implements OnInit {
     this.sidebarnavItems = ROUTES.filter(sidebarnavItem => sidebarnavItem);
     console.log("===>",this.sidebarnavItems);
   }
+
+  toggleCollapse(item: RouteInfo): void {
+    item.collapsed = !item.collapsed;
+  }
+
+ 
 }
